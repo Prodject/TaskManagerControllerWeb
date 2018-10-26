@@ -1,0 +1,270 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="~/Content/cssler.css" rel="stylesheet" />
+    <script src="~/Scripts/scriptler.js"></script>
+    <style>
+        .navbar .container-fluid .collapse ul li a:hover {
+            color: black;
+        }
+    </style>
+  
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark sidebarNavigation" data-sidebarClass="navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Users/HomePage">Sistem Takip</a>
+            <button class="navbar-toggler leftNavbarToggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="nav navbar-nav nav-flex-icons ml-auto">
+                    @if (Session["login"] != null)
+                    {
+                        <li class="">
+                            <a class="" style="color:@Session["renk"]">
+                                Kullanıcı:  @Session["login"]   Yetki:@Session["yetki"]
+
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="">
+                            <a class="nav-link" href="/Uygulamalars/Index">Sistem İzleyicisi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/Users/about">Hakkımızda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/Users/iletisim">İletişim</a>
+                        </li>
+                        <li class="nav-item" style="margin-left:">
+                            <a href="/Users/SignOut">
+                                <span class="glyphicon glyphicon-log-out">&nbsp;</span>Logout
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link " href="/Users/about">Hakkımızda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/Users/iletisim">İletişim</a>
+                        </li>
+                        <li class="nav-item" style="margin-left:">
+                            <a class="btn btn-success btn-circle" data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">Sign in</a>
+
+                        </li>
+
+
+
+
+                    }
+
+
+
+
+                </ul>
+                <!--  <form class="form-inline my-2 my-lg-0">
+                     <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                 </form> -->
+
+
+            </div>
+            <div class="collapse nav navbar-nav nav-collapse" id="nav-collapse2">
+                <form class="navbar-form navbar-right form-inline" role="form" action="/Users/SignIn" method="post">
+                    <div class="form-group">
+                        <label class="sr-only" for="">Username</label>
+                        <input type="text" class="form-control" id="Username" name="Username" placeholder="User Name" autofocus required />
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="Password">Password</label>
+                        <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="">Username</label>
+                        <input type="password" class="form-control" id="admin" name="admin" placeholder="Admin Password" autofocus />
+                    </div>
+                    <button type="submit" class="btn btn-success">Sign in</button>
+
+                    <a class="btn btn-success " data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">Cancel</a>
+
+                </form>
+            </div>
+        </div>
+    </nav>
+    @if (Session["hata"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <strong>Dikkat! </strong> Kullanıcı Adı Veya Şifre Hatalı!
+        </div>
+    }
+    @if (Session["hata2"] != null)
+    {
+        <div class="alert alert-info" role="alert">
+            <strong>Dikkat! </strong>  Admin Şifreniz Hatalı.Sadece İzleme Yapmak İçin Boş Bırakıp Girebilirsiniz!
+        </div>
+    }
+
+    @RenderBody()
+
+    </br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+
+   
+
+            <!-- Footer -->
+            <section id="footer">
+                <div class="container">
+                    <div class="row text-center text-xs-center text-sm-left text-md-left">
+                        <div class="col-xs-12 col-sm-12 col-md-12" style="height:auto">
+                            <h5>Hızlı Linkler</h5>
+                            <ul class="list-unstyled quick-links">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <td><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Ana Sayfa</a></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                @if (Session["login"] != null)
+                                {
+                                    <td><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Sistem İzleyicisi</a></td>}
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <td><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Hakkımızda</a></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <td><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>İletişim</a></td>
+
+                            </ul>
+
+                        </div>
+
+
+                    </div>
+                    <style>
+                        
+                    </style>
+                    <link href="~/Content/contact.css" rel="stylesheet" />
+              
+
+                        
+                            
+                            <div class="box">
+                                <div class="container">
+                                    <div class="row">
+
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            
+
+                                                
+                                                    <form>
+                                                        <div id="contact-form" class="form-container2" data-form-container>
+                                                            <div class="row2">
+                                                                <div class="form-title2">
+                                                                    <span>Contact Us</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-container2">
+                                                                <div class="row2">
+                                                                    <span class="req-input2">
+                                                                        <span class="input-status2" data-toggle="tooltip2" data-placement="top" title="Adınızı Giriniz"> </span>
+                                                                        <input type="text" data-min-length="3" placeholder="Hasan Şahin" required>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="row2">
+                                                                    <span class="req-input2">
+                                                                        <span class="input-status2" data-toggle="tooltip2" data-placement="top" title="E-Posta Giriniz"> </span>
+                                                                        <input type="email" placeholder="hasan@shngroup.net" required>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="row2">
+                                                                    <span class="req-input2">
+                                                                        <span class="input-status2" data-toggle="tooltip2" data-placement="top" title="İletişim Bilgisi Girin"> </span>
+                                                                        <input type="tel" placeholder="---/-------" required>
+                                                                    </span>
+                                                                    <div class="row2">
+                                                                        <span class="req-input2">
+                                                                            <span class="input-status2" data-toggle="tooltip2" data-placement="top" title="Mevcut ise Firma Adı Giriniz"> </span>
+                                                                            <input type="text" data-min-length="3" placeholder="Firma Adı" >
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row2">
+                                                                    <span class="req-input2 message-box2">
+                                                                        <span class="input-status2" data-toggle="tooltip2" data-placement="top" title="Mesajınızı Giriniz"> </span>
+                                                                        <textarea type="textarea" data-min-length="8" placeholder="Mesajınız.." required></textarea>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="row2 submit-row2">
+                                                                    <button type="button" class="btn2 btn-block submit-form2">Submit</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                             
+
+
+                                        </div>   
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                                                <div class="box-part text-center">
+
+                                                    <i class="fa fa-twitter fa-3x" aria-hidden="true"></i>
+
+                                                    <div class="title">
+                                                        <h3>Twitter</h3>
+                                                    </div>
+
+                                                    <div class="text">
+                                                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
+                                                    </div>
+
+                                                    <a href="#">Learn More</a>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                                                <div class="box-part text-center">
+
+                                                    <i class="fa fa-facebook fa-3x" aria-hidden="true"></i>
+
+                                                    <div class="title">
+                                                        <h3>Facebook</h3>
+                                                    </div>
+
+                                                    <div class="text">
+                                                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
+                                                    </div>
+
+                                                    <a href="#">Learn More</a>
+
+                                                </div>
+                                            </div>
+                                    
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+
+                                        <p class="h6">@DateTime.Now.Year &copy AppUsage</p>
+                                    </div>
+                                    </hr>
+                                </div>
+                            </div>
+</section>
+            <!-- ./Footer -->
+</body>
+
+</html>

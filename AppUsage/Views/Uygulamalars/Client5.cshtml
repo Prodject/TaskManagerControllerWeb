@@ -1,0 +1,134 @@
+﻿@model IEnumerable<DAL.DAL.Uygulamalar>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AnaSayfa.cshtml";
+}
+<link href="~/Content/cssler.css" rel="stylesheet" />
+<script>
+
+</script>
+
+
+
+</br></br>
+
+<div class="container" style="text-align:center">
+    <a type="button" href="/Uygulamalars/Index" class="btn btn-success">Server</a>&emsp;&emsp;
+    <a type="button" href="/Uygulamalars/Client1" class="btn btn-primary">Client1</a>
+    <a type="button" href="/Uygulamalars/Client2" class="btn btn-primary">Client2</a>
+    <a type="button" href="/Uygulamalars/Client3" class="btn btn-primary">Client3</a>
+    <a type="button" href="/Uygulamalars/Client4" class="btn btn-primary">Client4</a>
+    <a type="button" href="/Uygulamalars/Client5" class="btn btn-primary">Client5</a>
+
+</div>
+
+</br>@{
+    SelectListItem[] liste2 = new SelectListItem[2]
+        {
+            new SelectListItem() { Text="Baslat",Value="baslat" },
+            new SelectListItem() {Text="Kapat",Value="kapat" }
+        };
+
+}
+@if (@Session["yetki5"].ToString() == "1")
+{
+    <div class="row">
+        <div class="col-sm-4">
+            @using (Html.BeginForm("UygulamaBaslat", "Uygulamalars", FormMethod.Post))
+            {
+                <a> &emsp; &emsp; Uygulama Seçin:</a> @Html.DropDownList("DropDownValue",
+                       (IEnumerable<SelectListItem>)ViewData["uygulamalist"],
+                        "-- Uygulama Seç --");
+                @Html.DropDownList("list2", liste2)
+                @Html.Hidden("t1", @Session["client5"]);@Html.Hidden("t2", "0");
+                <input type="submit" class="btn btn-primary" value="Uygula" />
+            }
+        </div>
+
+        <div class="col-sm-4">
+            @using (Html.BeginForm("UygulamaBaslat", "Uygulamalars", FormMethod.Post))
+            {
+                <a> &emsp; &emsp;Servis Seçin:</a> @Html.DropDownList("DropDownValue",
+                       (IEnumerable<SelectListItem>)ViewData["serverlist"],
+                        "-- Servis Seç --");
+                @Html.DropDownList("list2", liste2)
+                @Html.Hidden("t1", @Session["client5"]);@Html.Hidden("t2", "1");
+                <input type="submit" class="btn btn-primary" value="Uygula" />
+            }
+        </div>
+
+        <div class="col-sm-4">
+            @using (Html.BeginForm("KomutGonder", "Uygulamalars", FormMethod.Post))
+            {
+                <a> &emsp; &emsp; &emsp;CMD Komut:</a>  @Html.TextBox("cmd", null, new { @class = "textbox" })
+                @Html.Hidden("t1", @Session["client5"]);
+                <input type="submit" class="btn btn-primary" value="Çalıştır" />
+            }
+        </div>
+    </div>
+}
+
+</br>
+
+<div class="container">
+    <div class="tabbable">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1" data-toggle="tab">Uygulamalar</a></li>
+            <li><a href="#tab2" data-toggle="tab">Servisler</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab1">
+
+            </div>
+            <div class="tab-pane" id="tab2">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function() {
+        setInterval(loadTable, 1000);  // invoke load every second
+        setInterval(loadTable2, 1000);  // invoke load every second
+        loadTable();
+        loadTable2();
+    });
+
+    function loadTable() {
+
+        $('#tab1').load('/Uygulamalars/Client?clientid=@Session["client5"]&yetki=@Session["yetki5"]');
+    }
+    function loadTable2() {
+
+        $('#tab2').load('/Uygulamalars/Clientas?clientid=@Session["client5"]&yetki=@Session["yetki5"]');
+    }
+</script>
+
+<div id="tablecontainer" class="container">
+
+</div>
+
+
+
+
+
+
+
+<script src="~/Scripts/yukarıbuton.js"></script>
+
+<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+
+
+
+
+
+
+
+
+
+
+
+

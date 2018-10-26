@@ -1,0 +1,114 @@
+﻿@model IEnumerable<DAL.DAL.Uygulamalar>
+@using DAL.DAL;
+@using AppUsage.Controllers;
+
+
+<link href="~/Content/cssler.css" rel="stylesheet" />
+
+<!------ Include the above in your HEAD tag ---------->
+<style>
+    .kutu {
+        width: 20%;
+        opacity: .8;
+        display: inline-block;
+    }
+
+        .kutu:hover {
+            cursor: pointer;
+            opacity: 1;
+        }
+
+        .kutu table tr td {
+            text-align: left;
+        }
+
+            .kutu table tr td p {
+                text-align: center;
+                margin-left: 80px;
+            }
+
+    .table-borderless {
+        background-color: white;
+    }
+</style>
+
+
+
+<div class="box">
+    <div class="container">
+        <div class="row">
+
+
+
+            @foreach (var item in Model)
+            {
+                if (item.IsAcik == true)
+                { ViewBag.renk = "green"; }
+                else
+                { ViewBag.renk = "red"; }
+
+
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                    <div class="box-part" style="color:white;">
+
+
+
+                        <div class="title" style="text-align:center;color:white;background-color:@ViewBag.renk">
+                            <h3><u>@Html.DisplayFor(modelItem => item.UygulamaAdi)</u></h3>
+                        </div>
+
+                        <div class="text">
+                            <table>
+                                <tr>
+                                    <td width="158">Cpu :</td>
+                                    <td pad><span style="padding-left:25%">%@Html.DisplayFor(modelItem => item.Cpu)</span></td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+                        <div class="text">
+                            <table>
+                                <tr>
+                                    <td width="160">Ram :</td>
+                                    <td><span style="margin-left:auto;">@Html.DisplayFor(modelItem => item.Ram)MB</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="text">
+                            <table>
+                                <tr>
+                                    <td width="160">ONN/OFF:</td>
+                                    <td><span style="margin-left:auto">@Html.DisplayFor(modelItem => item.IsAcik)</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="text">
+                            <table>
+                                <tr>
+                                    <td width="125">Acilma Zamani:</td>
+                                    <td><span style="margin-left:auto;">@Html.DisplayFor(modelItem => item.AcilmaZamani)</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="text">
+                            <table>
+                                <tr>
+                                    <td width="125">Kapanma Zamani:</td>
+                                    <td><span style="margin-left:auto;">@Html.DisplayFor(modelItem => item.KapanmaZamani)</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                       
+                       
+                    </div>
+                </div>
+           
+
+            }
+        </div>
+    </div>
+</div>
+
